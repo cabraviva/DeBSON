@@ -1,0 +1,24 @@
+{
+  "name": "debson",
+  "version": "1.0.0",
+  "description": "DeBSON is the simplest, fastest JSON Database you could think of",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greencoder001/DeBSON.git"
+  },
+  "keywords": [
+    "db",
+    "json",
+    "debson"
+  ],
+  "author": "greencoder001",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/greencoder001/DeBSON/issues"
+  },
+  "homepage": "https://github.com/greencoder001/DeBSON#readme"
+}
