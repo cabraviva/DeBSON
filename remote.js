@@ -22,7 +22,7 @@ class DeBSON {
                             category: categoryName,
                             object: objectName,
                             cmd: 'write',
-                            data: data,
+                            data: data
                         }
 
                         return new Promise((resolve, reject) => {
@@ -41,7 +41,7 @@ class DeBSON {
                             category: categoryName,
                             object: objectName,
                             cmd: 'read',
-                            data: '',
+                            data: ''
                         }
 
                         return new Promise((resolve, reject) => {
@@ -60,7 +60,7 @@ class DeBSON {
                             category: categoryName,
                             object: objectName,
                             cmd: 'delete',
-                            data: '',
+                            data: ''
                         }
 
                         return new Promise((resolve, reject) => {
@@ -79,7 +79,7 @@ class DeBSON {
                             category: categoryName,
                             object: objectName,
                             cmd: 'watch',
-                            data: cb,
+                            data: cb
                         }
 
                         return new Promise((resolve, reject) => {
