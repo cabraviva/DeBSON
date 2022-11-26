@@ -207,10 +207,12 @@ const DeBSON = {
             cb(success, data, err)
         })
 
-        socket.on('@deb-exec-watch-cmd', (payload, handlerf, cb) => {
+        socket.on('@deb-exec-watch-cmd', (payload, cb) => {
             const category = p.category(payload.category)
             const object = category.obj(payload.object)
-            object.watch(handlerf)
+            object.watch((val) => {
+                socket.emit('@deb-wtrigger-' + payload.wid, val)
+            })
             cb(true, null, null)
         })
     }

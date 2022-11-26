@@ -78,11 +78,16 @@ class DeBSON {
                         const payload = {
                             category: categoryName,
                             object: objectName,
-                            cmd: 'watch'
+                            cmd: 'watch',
+                            wid: (() => ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, a => (a ^ Math.random() * 16 >> a / 4).toString(16)) + '-' + Date.now())()
                         }
 
                         return new Promise((resolve, reject) => {
-                            socket.emit('@deb-exec-watch-cmd', payload, callbackfunc, (success, data, err) => {
+                            socket.on('@deb-wtrigger-' + payload.wid, (val) => {
+                                callbackfunc(val)
+                            })
+
+                            socket.emit('@deb-exec-watch-cmd', payload, (success, data, err) => {
                                 if (success) {
                                     resolve(data)
                                 } else {
