@@ -78,12 +78,11 @@ class DeBSON {
                         const payload = {
                             category: categoryName,
                             object: objectName,
-                            cmd: 'watch',
-                            callback: callbackfunc
+                            cmd: 'watch'
                         }
 
                         return new Promise((resolve, reject) => {
-                            socket.emit('@deb-exec-cmd', payload, (success, data, err) => {
+                            socket.emit('@deb-exec-watch-cmd', payload, callbackfunc, (success, data, err) => {
                                 if (success) {
                                     resolve(data)
                                 } else {

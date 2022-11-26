@@ -195,9 +195,6 @@ const DeBSON = {
                     data = object.read()
                 } else if (payload.cmd === 'delete') {
                     object.delete()
-                } else if (payload.cmd === 'watch') {
-                    console.log(payload)
-                    object.watch(payload.callback)
                 } else {
                     throw new Error('Invalid Command')
                 }
@@ -208,6 +205,13 @@ const DeBSON = {
             }
 
             cb(success, data, err)
+        })
+
+        socket.on('@deb-exec-watch-cmd', (payload, handlerf, cb) => {
+            const category = p.category(payload.category)
+            const object = category.obj(payload.object)
+            object.watch(handlerf)
+            cb(true, null, null)
         })
     }
 }
