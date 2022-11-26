@@ -45,7 +45,7 @@ class DeBSON {
                         }
 
                         return new Promise((resolve, reject) => {
-                            socket.emit(payload, (success, data, err) => {
+                            socket.emit('@deb-exec-cmd', payload, (success, data, err) => {
                                 if (success) {
                                     resolve(data)
                                 } else {

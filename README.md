@@ -12,11 +12,11 @@ deb.mode('sync') // Optional
 // Reading a value
 val = deb.cat('MyCategory').obj('MyObject').read()
 
-// Reading a value
-val = deb.cat('MyCategory').obj('MyObject').write({MyValue: 123}) // You can write Strings, Objects, Numbers & Arrays to an Object
+// Writing a value
+deb.cat('MyCategory').obj('MyObject').write({MyValue: 123}) // You can write Strings, Objects, Numbers & Arrays to an Object
 
 // Deleting a value
-val = deb.cat('MyCategory').obj('MyObject').delete()
+deb.cat('MyCategory').obj('MyObject').delete()
 ```
 
 # Remote
@@ -47,9 +47,9 @@ const deb = new DeBSON(socket)
 // Reading a value
 val = await deb.cat('MyCategory').obj('MyObject').read()
 
-// Reading a value
-val = await deb.cat('MyCategory').obj('MyObject').write({MyValue: 123}) // You can write Strings, Objects, Numbers & Arrays to an Object
+// Writing a value
+await deb.cat('MyCategory').obj('MyObject').write({MyValue: 123}) // You can write Strings, Objects, Numbers & Arrays to an Object
 
 // Deleting a value
-val = await deb.cat('MyCategory').obj('MyObject').delete()
+await deb.cat('MyCategory').obj('MyObject').delete()
 ```
