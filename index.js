@@ -196,6 +196,7 @@ const DeBSON = {
                 } else if (payload.cmd === 'delete') {
                     object.delete()
                 } else if (payload.cmd === 'watch') {
+                    console.log(payload.data)
                     object.watch(payload.data)
                 } else {
                     throw new Error('Invalid Command')
