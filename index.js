@@ -62,6 +62,11 @@ class DeBSONObject {
     write (content) {
         if (sync) {
             let c = this._readCat()
+            if (c[this.obj] !== content) {
+                for (const handler of handlers) {
+                    handler(content)
+                }
+            }
             c[this.obj] = content
             fs.writeFileSync(this.pth, JSON.stringify(c))
         } else {
