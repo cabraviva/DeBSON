@@ -18,3 +18,38 @@ val = deb.cat('MyCategory').obj('MyObject').write({MyValue: 123}) // You can wri
 // Deleting a value
 val = deb.cat('MyCategory').obj('MyObject').delete()
 ```
+
+# Remote
+DeBSON supports a remote connection using socket.io to interact with your database.
+**NOTE! This isn't encrypted or secured. Attackers can and will access all of your files and write to them.**
+
+First you have to bind your sockets to your DeBSON client serverside like this:
+```js
+const io = requrie('socket.io')
+const deb = require('debson')
+
+io.on('connection', (socket) => {
+    deb.bind(socket)
+})
+```
+
+Then, add this to your HTML:
+```html
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/debson@latest/remote.min.js"></script>
+```
+
+Now you can use following commands in your clients javascript:
+
+```js
+const socket = io()
+const deb = new DeBSON(socket)
+
+// Reading a value
+val = await deb.cat('MyCategory').obj('MyObject').read()
+
+// Reading a value
+val = await deb.cat('MyCategory').obj('MyObject').write({MyValue: 123}) // You can write Strings, Objects, Numbers & Arrays to an Object
+
+// Deleting a value
+val = await deb.cat('MyCategory').obj('MyObject').delete()
+```

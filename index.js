@@ -153,6 +153,43 @@ const DeBSON = {
         objName = `${objName}`
         if (objName === '') objName = 'EMPTY_OBJ_NAME!76537'
         return new DeBSONObject(DeBSON.env.pth, objName)
+    },
+
+    /**
+     * Binds a socket (from socket.io) for remote connection
+     */
+    bind (socket) {
+        let p = this
+
+        socket.on('@deb-test-connection', (cb) => {
+            cb()
+        })
+
+        socket.on('@deb-exec-cmd', (payload, cb) => {
+            let success = true
+            let data = null
+            let err = null
+
+            try {
+                const category = p.category(payload.category)
+                const object = category.obj(payload.object)
+
+                if (payload.cmd === 'write') {
+                    object.write(payload.data)
+                } else if (payload.cmd === 'read') {
+                    data = object.read()
+                } else if (payload.cmd === 'delete') {
+                    object.delete()
+                } else {
+                    throw new Error('Invalid Command')
+                }
+            } catch (e) {
+                success = false
+                err = e
+            }
+
+            cb(success, data, err)
+        })
     }
 }
 
