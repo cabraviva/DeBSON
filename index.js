@@ -202,6 +202,7 @@ const DeBSON = {
                 }
             } catch (e) {
                 success = false
+                console.error(e)
                 err = e
             }
 
