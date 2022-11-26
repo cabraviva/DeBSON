@@ -74,12 +74,12 @@ class DeBSON {
                             })
                         })
                     },
-                    watch(cb) {
+                    watch(callbackfunc) {
                         const payload = {
                             category: categoryName,
                             object: objectName,
                             cmd: 'watch',
-                            data: cb
+                            callback: callbackfunc
                         }
 
                         return new Promise((resolve, reject) => {
