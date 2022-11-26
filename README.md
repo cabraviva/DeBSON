@@ -35,7 +35,7 @@ io.on('connection', (socket) => {
 
 Then, add this to your HTML:
 ```html
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/debson@latest/remote.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/debson@1/remote.min.js"></script>
 ```
 
 Now you can use following commands in your clients javascript:
