@@ -17,6 +17,11 @@ deb.cat('MyCategory').obj('MyObject').write({MyValue: 123}) // You can write Str
 
 // Deleting a value
 deb.cat('MyCategory').obj('MyObject').delete()
+
+// Watching a value
+deb.cat('MyCategory').obj('MyObject').watch((val) => {
+    console.log('Value changed to ' + val)
+})
 ```
 
 # Remote
@@ -52,4 +57,9 @@ await deb.cat('MyCategory').obj('MyObject').write({MyValue: 123}) // You can wri
 
 // Deleting a value
 await deb.cat('MyCategory').obj('MyObject').delete()
+
+// Watching a value
+await deb.cat('MyCategory').obj('MyObject').watch((val) => {
+    console.log('Value changed to ' + val)
+})
 ```

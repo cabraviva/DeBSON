@@ -3,6 +3,7 @@ const path = require('path')
 let sync = true
 let folder = path.join(process.cwd(), '.DeBSON')
 if (!fs.existsSync(folder)) fs.mkdirSync(folder)
+const handlers = []
 
 class DeBSONObject {
     constructor (pth, obj) {
@@ -68,6 +69,11 @@ class DeBSONObject {
             return new Promise((resolve) => {
                 // deepcode ignore PromiseNotCaughtNode: <please specify a reason of ignoring this>
                 p._readCat().then(r => {
+                    if (r[p.obj] !== content) {
+                        for (const handler of handlers) {
+                            handler(content)
+                        }
+                    }
                     r[p.obj] = content
                     fs.writeFile(this.pth, JSON.stringify(r), 'utf8', () =>  {
                         resolve()
@@ -75,6 +81,10 @@ class DeBSONObject {
                 })
             })
         }
+    }
+
+    watch (cb) {
+        handlers.push(cb)
     }
 
     /**
@@ -180,6 +190,8 @@ const DeBSON = {
                     data = object.read()
                 } else if (payload.cmd === 'delete') {
                     object.delete()
+                } else if (payload.cmd === 'watch') {
+                    object.watch(payload.data)
                 } else {
                     throw new Error('Invalid Command')
                 }

@@ -73,6 +73,25 @@ class DeBSON {
                                 }
                             })
                         })
+                    },
+                    watch(cb) {
+                        const payload = {
+                            category: categoryName,
+                            object: objectName,
+                            cmd: 'watch',
+                            data: cb,
+                        }
+
+                        return new Promise((resolve, reject) => {
+                            socket.emit('@deb-exec-cmd', payload, (success, data, err) => {
+                                if (success) {
+                                    resolve(data)
+                                } else {
+                                    console.error(err)
+                                    reject()
+                                }
+                            })
+                        })
                     }
                 }
             }
