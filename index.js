@@ -63,8 +63,8 @@ class DeBSONObject {
         if (sync) {
             let c = this._readCat()
             if (c[this.obj] !== content) {
-                for (const handler of handlers) {
-                    handler(content)
+                for (const [_pth, _obj, handler] of handlers) {
+                    if (_pth == this.pth && _obj == this.obj) handler(content)
                 }
             }
             c[this.obj] = content
@@ -75,8 +75,8 @@ class DeBSONObject {
                 // deepcode ignore PromiseNotCaughtNode: <please specify a reason of ignoring this>
                 p._readCat().then(r => {
                     if (r[p.obj] !== content) {
-                        for (const handler of handlers) {
-                            handler(content)
+                        for (const [_pth, _obj, handler] of handlers) {
+                            if (_pth == p.pth && _obj == p.obj) handler(content)
                         }
                     }
                     r[p.obj] = content
@@ -89,7 +89,7 @@ class DeBSONObject {
     }
 
     watch (cb) {
-        handlers.push(cb)
+        handlers.push([this.pth, this.obj, cb])
     }
 
     /**
