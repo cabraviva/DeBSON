@@ -2,7 +2,7 @@
  DeBSON is the simplest, fastest JSON Database you could think of
 
 # How it works
-DeBSON uses Categories which store many Objects. An Object stores one specific Value, either a String, Numer, Array or Object. It works like a simple Key-Value Pair. Usally corresponding Objects are stored in the same category. If more objects are stored in a category, the category takes longer to read.
+DeBSON uses Categories which store many Objects. An Object stores one specific Value, either a String, Number, Array or Object. It works like a simple Key-Value Pair. Usally corresponding Objects are stored in the same category. If more objects are stored in a category, the category takes longer to read.
 
 # Usage
 ```js
